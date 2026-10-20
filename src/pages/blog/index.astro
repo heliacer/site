@@ -1,7 +1,7 @@
 ---
 import Layout from '@/layout.astro'
 import BlogCard from '@/components/BlogCard.astro'
-import { ArrowLeft } from '@lucide/astro'
+import { ArrowLeft, ArrowLeftRight } from '@lucide/astro'
 import { getCollection } from 'astro:content'
 
 const posts = (await getCollection('blog')).sort((a, b) => {
@@ -28,9 +28,66 @@ const posts = (await getCollection('blog')).sort((a, b) => {
     log
   </h1>
   <p class='text-ui-400'>Projects and stuff, mostly written in English</p>
-  <ul class='my-4 md:flex block flex-wrap'>
-    {posts.map(post => (
-      <BlogCard id={post.id} blog={post.data} />
-    ))}
-  </ul>
+  <div class='flex items-start gap-4'>
+    <ul
+      id='posts'
+      class='my-4 flex-1 grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-4'
+    >
+      {posts.map(post => (
+        <BlogCard id={post.id} blog={post.data} />
+      ))}
+    </ul>
+    <aside
+      class:list={[
+        'hidden md:block sticky top-0 h-screen w-52 pl-4',
+        'border-l border-dashed border-ui-800'
+      ]}
+    >
+      <h2 class='my-4'>Navigation</h2>
+      <div class='flex gap-2 items-center text-sm'>
+        <span>Sort by:</span>
+        <span id='sortLabel' class='italic w-12'>
+          newest
+        </span>
+        <button
+          id='sortButton'
+          class:list={[
+            'px-1 py-1 rounded-md hover:bg-ui-900',
+            'border border-transparent active:border-ui-950'
+          ]}
+        >
+          <ArrowLeftRight size={16} />
+        </button>
+      </div>
+      <input
+        class:list={[
+          'my-4 py-1.25 px-2.5 text-sm w-full',
+          'rounded-lg bg-ui-900/50'
+        ]}
+        placeholder='Search...'
+        id='blogsearch'
+        type='search'
+      />
+    </aside>
+  </div>
 </Layout>
+
+<script>
+  const sortButton = document.getElementById('sortButton')!
+  const sortLabel = document.getElementById('sortLabel')!
+  const list = document.getElementById('posts')!
+  
+  let newest = true  
+  sortButton.addEventListener('click', () => {
+    newest = !newest
+    sortLabel.textContent = newest ? 'newest' : 'oldest'
+    list.append(...[...list.children].reverse())
+  })
+
+  const search = document.getElementById('blogsearch') as HTMLInputElement
+  search.addEventListener('input', () => {
+    const q = search.value.trim().toLowerCase()
+    for (const card of list.children as HTMLCollectionOf<HTMLElement>)
+      card.hidden = !card.textContent!.toLowerCase().includes(q)
+  })
+</script>

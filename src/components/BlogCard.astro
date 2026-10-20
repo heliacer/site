@@ -11,10 +11,14 @@ const { blog, id } = Astro.props
 const date = blog.upd ?? blog.pub
 ---
 
-<li>
+<li
+  data-id={id}
+  data-date={date.getTime()}
+  data-search={`${blog.title} ${blog.descr} ${blog.tags.join(' ')}`.toLowerCase()}
+>
   <a
     class:list={[
-      'flex flex-col gap-1 p-2 px-4 rounded-lg border border-transparent',
+      'flex flex-col gap-1 py-2 md:px-4 rounded-lg border border-transparent',
       'hover:bg-ui-900/50 active:border-ui-950'
     ]}
     href={`/blog/${id}`}
@@ -26,7 +30,7 @@ const date = blog.upd ?? blog.pub
       <span class='text-amber'>{blog.title.charAt(0)}</span>
       {blog.title.substring(1)}
     </h2>
-    <p class='text-ui-400 md:w-80 line-clamp-2 min-h-[2lh]'>{blog.descr}</p>
+    <p class='text-ui-400 line-clamp-2 min-h-[2lh]'>{blog.descr}</p>
     <div class='flex flex-wrap gap-1 my-1 h-4.5'>
       {blog.tags.map(tag => (
         <p class='rounded-md px-1 py-px bg-amber/20 text-ui-300 text-xs'>
@@ -36,14 +40,14 @@ const date = blog.upd ?? blog.pub
     </div>
     {blog.cover ? (
       <Image
-        class='rounded-md opacity-80 my-2'
-        width={320}
-        height={160}
+        class='rounded-md my-2 w-full aspect-2/1 object-cover'
+        width={640}
+        height={320}
         src={blog.cover.src}
         alt={blog.cover.alt}
       />
     ) : (
-      <div class='h-44 text-sm italic text-ui-400'>[image needed]</div>
+      <div class='aspect-2/1 my-2 text-sm italic text-ui-400'>[image needed]</div>
     )}
   </a>
 </li>
