@@ -1,0 +1,32 @@
+---
+import Layout from '@/layout.astro'
+import BlogCard from '@/components/BlogCard.astro'
+import { ArrowLeft } from '@lucide/astro'
+import { getCollection } from 'astro:content'
+
+const posts = await getCollection('blog')
+---
+
+<Layout>
+  <a
+    href='/'
+    class:list={[
+      'flex items-center gap-1 rounded-md w-fit text-sm p-1 px-2',
+      'border border-transparent active:border-ui-950',
+      'text-ui-400 hover:text-ui-200 hover:bg-ui-900'
+    ]}
+  >
+    <ArrowLeft size={14} />
+    Home
+  </a>
+  <h1 class='text-4xl my-4'>
+    <span class='text-amber'>B</span>
+    log
+  </h1>
+  <p class='text-ui-400'>Projects and stuff, mostly written in English</p>
+  <ul class='my-4 md:flex block flex-wrap'>
+    {posts.map(post => (
+      <BlogCard id={post.id} blog={post.data} />
+    ))}
+  </ul>
+</Layout>

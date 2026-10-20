@@ -1,0 +1,35 @@
+---
+const { pathname } = Astro.url
+
+const menus = [
+  { path: '/', label: 'Home' },
+  { path: '/blog/', label: 'Blog' },
+  { path: '/blog/graplet/', label: 'Graplet' }
+]
+---
+
+<nav class='flex gap-4 my-3 items-center'>
+  <a href='/' class='active:scale-95'>
+    heliacer
+    <span class='text-amber'>.</span>
+    ch
+  </a>
+  <ul class='flex gap-0.5 rounded-lg px-0.5 py-1.25 text-sm bg-ui-900/50 border border-ui-800'>
+    {menus.map(menu => (
+      <li>
+        <a
+          class:list={[
+            'p-1 px-2.5 rounded-md border border-transparent',
+            pathname === menu.path
+              ? 'bg-amber/25'
+              : 'hover:bg-ui-800/50 active:border-ui-950/50'
+          ]}
+          href={menu.path}
+        >
+          {menu.label}
+        </a>
+      </li>
+    ))}
+  </ul>
+  <button class='ml-auto'>[theme toggle]</button>
+</nav>

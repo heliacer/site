@@ -1,0 +1,41 @@
+{
+  "name": "site",
+  "author": "heliacer",
+  "description": "personal site and blog stuff",
+  "type": "module",
+  "version": "1.0",
+  "engines": {
+    "node": ">=22.22.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "build:node": "astro build --node",
+    "preview": "astro preview --node",
+    "astro": "astro"
+  },
+  "prettier": {
+    "trailingComma": "none",
+    "tabWidth": 2,
+    "semi": false,
+    "singleQuote": true,
+    "jsxSingleQuote": true,
+    "arrowParens": "avoid"
+  },
+  "dependencies": {
+    "@astrojs/markdown-satteri": "^0.4.4",
+    "@astrojs/node": "^11.1.8",
+    "@astrojs/sitemap": "^3.7.4",
+    "@astrojs/vercel": "^11.0.15",
+    "@lucide/astro": "^1.59.0",
+    "@tailwindcss/vite": "^4.3.3",
+    "astro": "^7.4.0",
+    "satteri": "^0.10.5",
+    "tailwindcss": "^4.3.3"
+  },
+  "devDependencies": {
+    "@tailwindcss/typography": "^0.5.20",
+    "prettier": "3.9.10",
+    "prettier-plugin-astro": "1.1.1"
+  }
+}

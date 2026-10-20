@@ -1,0 +1,49 @@
+---
+import type { InferEntrySchema } from 'astro:content'
+import { Image } from 'astro:assets'
+
+interface Props {
+  blog: InferEntrySchema<'blog'>
+  id: string
+}
+
+const { blog, id } = Astro.props
+const date = blog.upd ?? blog.pub
+---
+
+<li>
+  <a
+    class:list={[
+      'flex flex-col gap-1 p-2 px-4 rounded-lg border border-transparent',
+      'hover:bg-ui-900/50 active:border-ui-950'
+    ]}
+    href={`/blog/${id}`}
+  >
+    <time class='text-sm pt-4 text-ui-400' datetime={date.toISOString()}>
+      {date.toLocaleDateString()}
+    </time>
+    <h2 class='text-lg'>
+      <span class='text-amber'>{blog.title.charAt(0)}</span>
+      {blog.title.substring(1)}
+    </h2>
+    <p class='text-ui-400 md:w-75 line-clamp-2 min-h-[2lh]'>{blog.descr}</p>
+    <div class='flex flex-wrap gap-1 my-1'>
+      {blog.tags.map(tag => (
+        <p class='rounded-md px-1 py-px bg-amber/20 text-ui-300 text-xs'>
+          # {tag}
+        </p>
+      ))}
+    </div>
+    {blog.cover ? (
+      <Image
+        class='rounded-md opacity-80 my-2'
+        width={320}
+        height={160}
+        src={blog.cover.src}
+        alt={blog.cover.alt}
+      />
+    ) : (
+      <div class='h-44 text-sm italic text-ui-400'>[image needed]</div>
+    )}
+  </a>
+</li>

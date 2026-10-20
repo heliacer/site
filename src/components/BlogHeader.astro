@@ -1,0 +1,35 @@
+---
+import type { InferEntrySchema } from 'astro:content'
+import { ArrowLeft } from '@lucide/astro'
+
+interface Props {
+  blog: InferEntrySchema<'blog'>
+}
+
+const { blog } = Astro.props
+const date = blog.upd ?? blog.pub
+---
+
+<header>
+  <a
+    href='/blog/'
+    class:list={[
+      'flex items-center gap-1 rounded-md w-fit text-sm p-1 px-2',
+      'border border-transparent active:border-ui-950',
+      'text-ui-400 hover:text-ui-200 hover:bg-ui-900'
+    ]}
+  >
+    <ArrowLeft size={14} />
+    Blog
+  </a>
+  <h1 class='text-4xl my-4'>
+    <span class='text-amber'>{blog.title.charAt(0)}</span>
+    {blog.title.substring(1)}
+  </h1>
+  <p class='my-3 text-ui-400'>{blog.descr}</p>
+  <p class='text-sm text-ui-500'>
+    {blog.upd ? 'Last updated ' : 'Published '}
+    <time datetime={date.toISOString()}>{date.toLocaleDateString()}</time>
+  </p>
+  <hr class='my-4 text-ui-800' />
+</header>

@@ -1,0 +1,51 @@
+@import 'tailwindcss';
+@plugin "@tailwindcss/typography";
+
+@theme static {
+  --color-*: initial;
+  --font-sans: var(--font-roboto);
+
+  --color-zinc-50: #fafafa;
+  --color-zinc-100: #f4f4f5;
+  --color-zinc-200: #e4e4e7;
+  --color-zinc-300: #d4d4d8;
+  --color-zinc-400: #9f9fa9;
+  --color-zinc-500: #71717b;
+  --color-zinc-600: #52525c;
+  --color-zinc-700: #3f3f46;
+  --color-zinc-800: #27272a;
+  --color-zinc-900: #18181b;
+  --color-zinc-950: #09090b;
+
+  --color-red: #923530;
+  --color-amber: #b67f30;
+
+  --color-ui-50: var(--color-zinc-50);
+  --color-ui-100: var(--color-zinc-100);
+  --color-ui-200: var(--color-zinc-200);
+  --color-ui-300: var(--color-zinc-300);
+  --color-ui-400: var(--color-zinc-400);
+  --color-ui-500: var(--color-zinc-500);
+  --color-ui-600: var(--color-zinc-600);
+  --color-ui-700: var(--color-zinc-700);
+  --color-ui-800: var(--color-zinc-800);
+  --color-ui-900: var(--color-zinc-900);
+  --color-ui-950: var(--color-zinc-950);
+}
+
+.dark {
+  --color-ui-50: var(--color-zinc-950);
+  --color-ui-100: var(--color-zinc-900);
+  --color-ui-200: var(--color-zinc-800);
+  --color-ui-300: var(--color-zinc-700);
+  --color-ui-400: var(--color-zinc-600);
+  --color-ui-600: var(--color-zinc-400);
+  --color-ui-700: var(--color-zinc-300);
+  --color-ui-800: var(--color-zinc-200);
+  --color-ui-900: var(--color-zinc-100);
+  --color-ui-950: var(--color-zinc-50);
+}
+
+:root {
+  scrollbar-color: var(--color-ui-600) var(--color-ui-900);
+}

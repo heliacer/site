@@ -1,0 +1,33 @@
+---
+import { getCollection, render } from 'astro:content'
+import type { InferGetStaticPropsType } from 'astro'
+import Layout from '@/layout.astro'
+import BlogHeader from '@/components/BlogHeader.astro'
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog')
+
+  return posts.map(post => ({
+    params: { id: post.id },
+    props: { post }
+  }))
+}
+
+type Props = InferGetStaticPropsType<typeof getStaticPaths>
+
+const { post } = Astro.props
+const { Content } = await render(post)
+---
+
+<Layout>
+  <BlogHeader blog={post.data} />
+  <article
+    class:list={[
+      'prose prose-zinc dark:prose-invert',
+      'prose-img:rounded-md prose-a:underline-offset-4',
+      'prose-headings:font-normal'
+    ]}
+  >
+    <Content />
+  </article>
+</Layout>
