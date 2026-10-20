@@ -1,6 +1,8 @@
 @import 'tailwindcss';
 @plugin "@tailwindcss/typography";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme static {
   --color-*: initial;
   --font-sans: var(--font-roboto);
@@ -20,7 +22,19 @@
   --color-red: #923530;
   --color-amber: #b67f30;
 
-  --color-ui-50: var(--color-zinc-50);
+  --color-ui-100: var(--color-zinc-950);
+  --color-ui-200: var(--color-zinc-900);
+  --color-ui-300: var(--color-zinc-800);
+  --color-ui-400: var(--color-zinc-700);
+  --color-ui-500: var(--color-zinc-600);
+  --color-ui-600: var(--color-zinc-500);
+  --color-ui-700: var(--color-zinc-400);
+  --color-ui-800: var(--color-zinc-300);
+  --color-ui-900: var(--color-zinc-200);
+  --color-ui-950: var(--color-zinc-100);
+}
+
+.dark {
   --color-ui-100: var(--color-zinc-100);
   --color-ui-200: var(--color-zinc-200);
   --color-ui-300: var(--color-zinc-300);
@@ -33,19 +47,16 @@
   --color-ui-950: var(--color-zinc-950);
 }
 
-.dark {
-  --color-ui-50: var(--color-zinc-950);
-  --color-ui-100: var(--color-zinc-900);
-  --color-ui-200: var(--color-zinc-800);
-  --color-ui-300: var(--color-zinc-700);
-  --color-ui-400: var(--color-zinc-600);
-  --color-ui-600: var(--color-zinc-400);
-  --color-ui-700: var(--color-zinc-300);
-  --color-ui-800: var(--color-zinc-200);
-  --color-ui-900: var(--color-zinc-100);
-  --color-ui-950: var(--color-zinc-50);
-}
+@layer base {
+  :root {
+    scrollbar-color: var(--color-ui-600) var(--color-ui-900);
+  }
 
-:root {
-  scrollbar-color: var(--color-ui-600) var(--color-ui-900);
+  html {
+    overflow-y: scroll;
+  }
+
+  *:focus-visible {
+    outline: 2px solid var(--color-amber);
+  }
 }

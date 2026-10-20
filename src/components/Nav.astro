@@ -1,4 +1,5 @@
 ---
+import { Moon, Sun } from '@lucide/astro'
 const { pathname } = Astro.url
 
 const menus = [
@@ -31,5 +32,21 @@ const menus = [
       </li>
     ))}
   </ul>
-  <button class='ml-auto'>[theme toggle]</button>
+  <button
+    id='theme'
+    class:list={[
+      'px-1 py-1 rounded-md hover:bg-ui-900',
+      'border border-transparent active:border-ui-950'
+    ]}
+  >
+    <Sun size={14} class='dark:hidden' />
+    <Moon size={14} class='hidden dark:block' />
+  </button>
 </nav>
+
+<script>
+  document.getElementById('theme')!.onclick = () =>
+    (localStorage.theme = document.documentElement.classList.toggle('dark')
+      ? 'dark'
+      : 'light')
+</script>
