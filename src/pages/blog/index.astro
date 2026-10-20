@@ -4,7 +4,11 @@ import BlogCard from '@/components/BlogCard.astro'
 import { ArrowLeft } from '@lucide/astro'
 import { getCollection } from 'astro:content'
 
-const posts = await getCollection('blog')
+const posts = (await getCollection('blog')).sort((a, b) => {
+  const aTime = a.data.upd ?? a.data.pub
+  const bTime = b.data.upd ?? b.data.pub
+  return bTime.getTime() - aTime.getTime()
+})
 ---
 
 <Layout>
