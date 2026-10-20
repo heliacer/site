@@ -26,8 +26,8 @@ const date = blog.upd ?? blog.pub
       <span class='text-amber'>{blog.title.charAt(0)}</span>
       {blog.title.substring(1)}
     </h2>
-    <p class='text-ui-400 md:w-75 line-clamp-2 min-h-[2lh]'>{blog.descr}</p>
-    <div class='flex flex-wrap gap-1 my-1'>
+    <p class='text-ui-400 md:w-80 line-clamp-2 min-h-[2lh]'>{blog.descr}</p>
+    <div class='flex flex-wrap gap-1 my-1 h-4.5'>
       {blog.tags.map(tag => (
         <p class='rounded-md px-1 py-px bg-amber/20 text-ui-300 text-xs'>
           # {tag}
