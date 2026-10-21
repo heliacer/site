@@ -2,42 +2,89 @@
 import { ChevronRight } from '@lucide/astro'
 import { Image } from 'astro:assets'
 import Layout from '@/layout.astro'
-import SSA from '@/assets/ssa.svg'
+import SSA from '@/assets/icons/ssa.svg'
+import Github from '@/assets/icons/github.svg'
+import LinkedIn from '@/assets/icons/linkedin.svg'
+import Insta from '@/assets/icons/insta.svg'
+import X from '@/assets/icons/x.svg'
 import capucins from '@/assets/capucins.jpeg'
+import SocialLink from '@/components/SocialLink.astro'
+
+const capucinsAlt =
+  'Francisco at Les Capucins, Brest, with the Penfeld river and the Pont de Recouvrance behind him.'
 ---
 
 <Layout>
-  <SSA class='text-amber h-5 my-4.75' />
-  <h1 class='my-4 text-4xl'>
-    <span class='text-amber'>F</span>
-    rancisco
-  </h1>
-  <p class='text-ui-400'>
-    Swiss guy interested in physics
-    <br />I build <span class='italic'>Graplet</span>, a 3D Editor for the
-    browser
-  </p>
-  <div class='flex gap-2 text-sm my-5'>
+  <main>
+    <SSA class='text-amber h-5 my-4.75' />
+    <h1 class='my-4 text-4xl'>
+      <span class='text-amber'>F</span>
+      rancisco
+    </h1>
+    <p class='text-ui-400'>
+      Swiss guy interested in physics
+      <br />I build <span class='italic'>Graplet</span>, a 3D Editor for the
+      browser
+    </p>
+    <div class='flex flex-wrap gap-2 text-sm my-5'>
+      <a
+        class:list={[
+          'flex items-center gap-2 rounded-lg border py-1.5 pl-3 pr-2 transition',
+          'border-amber/30 bg-amber/20 hover:bg-amber/25 active:border-amber/20'
+        ]}
+        href='/blog/graplet/'
+      >
+        About Graplet
+        <ChevronRight size={14} />
+      </a>
+      <a
+        class:list={[
+          'flex items-center gap-2 rounded-lg border py-1.5 pl-3 pr-2 transition',
+          'border-ui-800 bg-ui-900/50 hover:bg-ui-900/80 active:border-ui-800/80'
+        ]}
+        href='/blog/website/'
+      >
+        Make me a website
+        <ChevronRight size={14} />
+      </a>
+    </div>
+    <div class='flex flex-wrap sm:gap-4'>
+      <section>
+        <div class='overflow-hidden rounded-md w-fit'>
+          <Image
+            class:list={[
+              'opacity-80 sepia-20 object-cover transition',
+              'duration-2000 ease-out hover:scale-105'
+            ]}
+            width={443}
+            height={197}
+            src={capucins}
+            title={capucinsAlt}
+            alt={capucinsAlt}
+          />
+        </div>
+        <p class='text-xs italic text-ui-400 my-3'>Les Capucins, Brest</p>
+      </section>
+      <div class='flex gap-2.5 sm:flex-col my-3'>
+        <SocialLink href='https://github.com/heliacer'>
+          <Github class='w-6' />
+        </SocialLink>
+        <SocialLink href='https://github.com/heliacer'>
+          <LinkedIn class='w-6' />
+        </SocialLink>
+        <SocialLink href='https://github.com/heliacer'>
+          <Insta class='w-6' />
+        </SocialLink>
+        <SocialLink href='https://github.com/heliacer'>
+          <X class='w-6' />
+        </SocialLink>
+      </div>
+    </div>
     <a
-      class:list={[
-        'flex items-center gap-2 rounded-lg border py-1.5 pl-3 pr-2',
-        'border-amber/30 bg-amber/20 hover:bg-amber/25 active:border-amber/20'
-      ]}
-      href='/blog/graplet/'
+      href='mailto:heliacer@gmx.ch'
+      class='text-ui-100 underline decoration-amber underline-offset-4'
     >
-      About Graplet
-      <ChevronRight size={14} />
+      heliacer@gmx.ch
     </a>
-    <a
-      class:list={[
-        'flex items-center gap-2 rounded-lg border py-1.5 pl-3 pr-2',
-        'border-ui-800 bg-ui-900/50 hover:bg-ui-900/80 active:border-ui-800/80'
-      ]}
-      href='/blog/website/'
-    >
-      Make me a website
-      <ChevronRight size={14} />
-    </a>
-  </div>
-  <Image class='rounded' width={443} height={197} src={capucins} alt='Les Capucins, Brest' />
+  </main>
 </Layout>

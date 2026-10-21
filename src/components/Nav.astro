@@ -9,13 +9,20 @@ const menus = [
 ]
 ---
 
-<nav class='flex gap-4 my-3 items-center'>
+<nav class='flex justify-between sm:justify-start gap-4 my-3 items-center'>
   <a href='/' class='active:scale-95'>
     heliacer
     <span class='text-amber'>.</span>
     ch
   </a>
-  <ul class='flex gap-0.5 rounded-lg p-0.5 text-sm bg-ui-900/50 border border-ui-800'>
+  <ul
+    class:list={[
+      'fixed sm:static flex gap-0.5 rounded-lg p-0.5',
+      'text-sm bg-ui-900/50 border border-ui-800',
+      'bottom-0 left-1/2 -translate-1/2 sm:translate-0',
+      'backdrop-blur-md z-10'
+    ]}
+  >
     {menus.map(menu => (
       <li>
         <a
