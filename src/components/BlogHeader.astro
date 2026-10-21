@@ -1,6 +1,6 @@
 ---
 import type { InferEntrySchema } from 'astro:content'
-import { ArrowLeft } from '@lucide/astro'
+import Back from './Back.astro'
 
 interface Props {
   blog: InferEntrySchema<'blog'>
@@ -11,17 +11,7 @@ const date = blog.upd ?? blog.pub
 ---
 
 <header>
-  <a
-    href='/blog/'
-    class:list={[
-      'flex items-center gap-1 rounded-md w-fit text-sm p-1 px-2',
-      'border border-transparent active:border-ui-950',
-      'text-ui-400 hover:text-ui-200 hover:bg-ui-900'
-    ]}
-  >
-    <ArrowLeft size={14} />
-    Blog
-  </a>
+  <Back href='/blog/'>Blog</Back>
   <h1 class='text-4xl my-4'>
     <span class='text-amber'>{blog.title.charAt(0)}</span>
     {blog.title.substring(1)}

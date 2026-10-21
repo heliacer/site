@@ -13,9 +13,10 @@ const { href } = Astro.props
   class:list={[
     'flex items-center gap-1 rounded-md w-fit text-sm p-1 px-2',
     'border border-transparent active:border-ui-950',
+    'bg-ui-900 md:bg-transparent',
     'text-ui-400 hover:text-ui-200 hover:bg-ui-900'
   ]}
 >
   <ArrowLeft size={14} />
-  <slot/>
+  <slot />
 </a>

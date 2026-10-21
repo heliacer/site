@@ -1,7 +1,9 @@
 ---
 import { ChevronRight } from '@lucide/astro'
+import { Image } from 'astro:assets'
 import Layout from '@/layout.astro'
 import SSA from '@/assets/ssa.svg'
+import capucins from '@/assets/capucins.jpeg'
 ---
 
 <Layout>
@@ -37,4 +39,5 @@ import SSA from '@/assets/ssa.svg'
       <ChevronRight size={14} />
     </a>
   </div>
+  <Image class='rounded' width={443} height={197} src={capucins} alt='Les Capucins, Brest' />
 </Layout>
