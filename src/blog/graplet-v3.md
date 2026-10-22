@@ -9,18 +9,22 @@ cover:
 
 The Legacy Graplet is a small, lightweight Github pages site.
 
-It has a "Blocks" panel on the left, and a "Code" panel on the left, below it is the console.
-All panels can be dragged around freely, just like in [Graplet](about-graplet-link) today.
+It has a "Blocks" panel on the left, and a "Code" panel on the right, below it is the console.
+All panels can be dragged around freely.
 
 [![Graplet V3 Editor](@/assets/graplet-v3.png)](https://graplet.github.io/editor#)
+
+## Instructions
+Once you're visited the site (click the image above), you might want to try a few samples.
+For this, open a new tab (+) and click "Samples", and load one of your choice.
+
+Go back to the code tab, and see the blocks that got loaded in.
+Now you can press “Run” on the top navigation bar, and see the action,
+which is mostly shown in the console.
 
 ## What's it for
 It was primarily here to test if what is now being built for Graplet V4 is possible,
 and a fun little experiment, where you can drag around coding blocks and kick off some interactions.
-
-## What to try
-Once you've landed on the editor, you can open a new tab (+), and try a few samples.
-Once you've clicked "load", go back to the code panel and run it. 
 
 ### Collatz conjecture sample
 I'd reccomend you try the collatz conjecture, it's kinda fun. It shows an unsolved math problem, that by a specific repeated
@@ -28,7 +32,11 @@ pattern, deciding on whether it is even or not, you will always end up with 1. T
 you can change the number in the "collatz conjecture with" block. You should always end up with 1.
 Why isn't it solved yet? Because no one could prove it, that it's always the case for all numbers.
 
-There's also rock paper scissors to try, too.
+There's also rock paper scissors to try, too!
+
+> ![TIP]
+If you want to try something yourself and print to the console,
+use the “console [log]” block in the “Text” category.
 
 ## Conclusion
 
@@ -37,3 +45,5 @@ And if you opened the editor from the homepage, it loads in a tutorial, that doe
 
 If there's anything you'd like to know more about, let me know!
 You can add me on discord, my username is `heliacer`.
+
+Made with ❤️, feel free to see the [Github source](https://github.com/graplet/graplet.github.io#)
