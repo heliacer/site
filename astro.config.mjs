@@ -8,7 +8,7 @@ import tailwindcss from '@tailwindcss/vite'
 
 let adapter = vercel({ webAnalytics: { enabled: true } })
 
-if (process.argv[3] === '--node' || process.argv[4] === '--node') {
+if (process.argv.includes('--node')) {
   adapter = node({ mode: 'standalone' })
 }
 
