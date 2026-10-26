@@ -60,11 +60,3 @@
     outline: 2px solid var(--color-amber);
   }
 }
-
-.prose :where(:not(pre) > code) {
-  @apply rounded bg-ui-900 px-1.5 py-0.5 font-normal;
-}
-.prose :where(:not(pre) > code)::before,
-.prose :where(:not(pre) > code)::after {
-  content: none;
-}
