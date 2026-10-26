@@ -3,7 +3,7 @@ title: About Graplet
 pub: 2026-08-17
 descr: The 3D Editor and creator platform
 cover:
-  src: ../assets/graplet-preview.png
+  src: ../assets/images/graplet-preview.png
   alt: The graplet editor. A panel of code blocks next to a 3D scene.
 tags:
     - 3d
@@ -11,3 +11,5 @@ tags:
 ---
 
 gunga ginga
+
+[graplet architecture](/blog/graplet/architecture)

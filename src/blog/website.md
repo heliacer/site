@@ -2,6 +2,9 @@
 title: Website service
 pub: 2026-10-19
 descr: I can make you a website, host it and maintain it.
+cover:
+  src: ../assets/images/wallberg.png
+  alt: Wallberg Hotel, landing site for local business
 tags:
   - website
   - seo
@@ -16,7 +19,7 @@ Paragraph. Lorem ipsum dolor sit amet text and no continuation because i don't w
 
 [heliacer website link](https://heliacer.ch)
 
-![capucins image](@/assets/capucins.jpeg)
+![capucins image](@/assets/images/wallberg.png)
 
 Horizontal rule below
 

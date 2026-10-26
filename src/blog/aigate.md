@@ -3,7 +3,7 @@ title: Hackathon Miniproject (AI GATE)
 pub: 2026-07-03
 descr: Prove that you are a robot
 cover:
-  src: ../assets/aigate.png
+  src: ../assets/images/aigate.png
   alt: AI GATE Github pages site
 tags:
     - 3d
@@ -11,7 +11,7 @@ tags:
 ---
 *(This was before AI existed btw, so the name is kinda misleading)*
 
-!["Ruleset" for the Hackathon Minigame "AI GATE"](@/assets/aigate-ruleset.png)
+!["Ruleset" for the Hackathon Minigame "AI GATE"](@/assets/images/aigate-ruleset.png)
 > *"Ruleset" for the Hackathon Minigame "AI GATE*
 
 In this miniproject the aim is to prove that you *are* a robot.
