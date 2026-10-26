@@ -1,4 +1,5 @@
 ---
+import '@/styles/prose.css'
 import { getCollection, render } from 'astro:content'
 import type { InferGetStaticPropsType } from 'astro'
 import Layout from '@/layout.astro'
@@ -20,12 +21,13 @@ const { Content } = await render(post)
 ---
 
 <Layout title={post.data.title}>
-  <BlogHeader blog={post.data} />
+  <BlogHeader blog={post.data} id={post.id} />
   <article
     class:list={[
       'prose prose-zinc dark:prose-invert',
       'prose-img:rounded-md prose-a:underline-offset-4',
-      'prose-headings:font-normal'
+      'prose-headings:font-normal prose-a:hover:decoration-amber/80',
+      'prose-a:decoration-amber max-w-2xl',
     ]}
   >
     <Content />

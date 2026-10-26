@@ -1,17 +1,23 @@
 ---
-import type { InferEntrySchema } from 'astro:content'
+import { getEntry, type InferEntrySchema } from 'astro:content'
 import Back from './Back.astro'
 
 interface Props {
   blog: InferEntrySchema<'blog'>
+  id: string
 }
 
-const { blog } = Astro.props
+const { blog, id } = Astro.props
 const date = blog.upd ?? blog.pub
+
+const cut = id.lastIndexOf('/')
+const parent = cut === -1 ? undefined : await getEntry('blog', id.slice(0, cut))
+const href = parent ? `/blog/${parent.id}/` : '/blog/'
+const label = parent?.data.title ?? 'Blog'
 ---
 
 <header>
-  <Back href='/blog/'>Blog</Back>
+  <Back href={href}>{label}</Back>
   <h1 class='text-4xl my-4'>
     <span class='text-amber'>{blog.title.charAt(0)}</span>
     {blog.title.substring(1)}
