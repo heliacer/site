@@ -1,6 +1,7 @@
 import { satteri } from '@astrojs/markdown-satteri'
 import { defineConfig, fontProviders } from 'astro/config'
-import { hastExternalLinks } from '@/hast/hast-external-links'
+import { Anchor } from '@/plugins/anchor'
+import { satteriEmoji } from 'satteri-emoji'
 import sitemap from '@astrojs/sitemap'
 import vercel from '@astrojs/vercel'
 import node from '@astrojs/node'
@@ -32,7 +33,8 @@ export default defineConfig({
   ],
   markdown: {
     processor: satteri({
-      hastPlugins: [hastExternalLinks]
+      hastPlugins: [Anchor],
+      mdastPlugins: [satteriEmoji({ shortcodes: ['emojibase'] })]
     })
   },
   vite: {
