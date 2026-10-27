@@ -24,3 +24,12 @@
     no-repeat center;
   mask-size: contain;
 }
+
+/* other blog styles (mdx) */
+
+.note {
+  background-color: color-mix(in oklab, var(--color-teal) 50%, transparent);
+  border: 1px solid var(--color-teal);
+  border-radius: 8px;
+  padding-inline: 16px;
+}
