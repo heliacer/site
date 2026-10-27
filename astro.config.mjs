@@ -7,6 +7,8 @@ import vercel from '@astrojs/vercel'
 import node from '@astrojs/node'
 import tailwindcss from '@tailwindcss/vite'
 
+import mdx from '@astrojs/mdx';
+
 let adapter = vercel({ webAnalytics: { enabled: true } })
 
 if (process.argv.includes('--node')) {
@@ -15,7 +17,7 @@ if (process.argv.includes('--node')) {
 
 export default defineConfig({
   site: 'https://heliacer.ch',
-  integrations: [sitemap()],
+  integrations: [sitemap(), mdx()],
   prefetch: {
     defaultStrategy: 'viewport',
     prefetchAll: true

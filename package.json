@@ -23,7 +23,8 @@
     "arrowParens": "avoid"
   },
   "dependencies": {
-    "@astrojs/markdown-satteri": "^0.4.4",
+    "@astrojs/markdown-satteri": "^0.4.5",
+    "@astrojs/mdx": "^8.1.1",
     "@astrojs/node": "^11.1.8",
     "@astrojs/sitemap": "^3.7.4",
     "@astrojs/vercel": "^11.0.15",

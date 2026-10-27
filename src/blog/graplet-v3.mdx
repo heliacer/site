@@ -7,11 +7,15 @@ cover:
   alt: Graplet V3, an experiment legacy editor.
 ---
 
+import { Image } from 'astro:assets'
+import collatz from '../assets/images/collatz.png'
+
 The Legacy Graplet is a small, lightweight [Github Pages](https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages#) site.
 
 <figure>
 
 ![Graplet V3 Editor](@/assets/images/graplet-v3.png)
+
 <figcaption>
 It has a "Blocks" panel on the left, and a "Code" panel on the right, with the console below. All panels can be dragged around freely.
 </figcaption>
@@ -34,16 +38,25 @@ and a fun little experiment, where you can drag around coding blocks and kick of
 
 ### Collatz conjecture sample
 
-I'd reccomend you try the collatz conjecture, it's kinda fun. It shows an unsolved math problem, that by a specific repeated
+I'd reccomend you try the collatz conjecture, it's kinda fun.  
+It shows [an unsolved math problem](https://en.wikipedia.org/wiki/Collatz_conjecture#:~:text=The%20Collatz%20conjecture%5Ba%5D%20is%20one%20of%20the%20most%20famous%20unsolved%20problems%20in%20mathematics.%20The%20conjecture%20asks%20whether%20repeating%20two%20simple%20arithmetic%20operations%20will%20eventually%20transform%20every%20positive%20integer%20into%201#), that by a specific repeated
 pattern, deciding on whether it is even or not, you will always end up with 1. To try this yourself,
 you can change the number in the "collatz conjecture with" block. You should always end up with 1.
 Why isn't it solved yet? Because no one could prove it, that it's always the case for all numbers.
 
+<Image
+  src={collatz}
+  alt='Collatz print example in the Graplet V3 console'
+  width={300}
+  height={200}
+/>
+
 There's also rock paper scissors to try, too!
 
-### Tip
-> If you want to try something yourself and print to the console,
-> use the “console [log]” block in the “Text” category.
+<div class='note'>
+  **Tip**: If you want to try something yourself and print to the console, use the
+  `console [log]` block in the “Text” category.
+</div>
 
 ## Conclusion
 
