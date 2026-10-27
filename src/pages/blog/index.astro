@@ -14,7 +14,7 @@ const posts = (await getCollection('blog')).sort((a, b) => {
 
 <Layout title='Blog'>
   <Back href='/'>Home</Back>
-  <div class='flex gap-4'>
+  <main class='flex gap-4'>
     <main class='flex-1 min-w-0'>
       <h1 class='text-4xl my-4'>
         <span class='text-amber'>B</span>log
@@ -52,7 +52,7 @@ const posts = (await getCollection('blog')).sort((a, b) => {
         />
       </aside>
     </div>
-  </div>
+  </main>
 </Layout>
 
 <script>

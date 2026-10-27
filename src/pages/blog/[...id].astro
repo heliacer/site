@@ -22,14 +22,17 @@ const { Content } = await render(post)
 
 <Layout title={post.data.title}>
   <BlogHeader blog={post.data} id={post.id} />
-  <article
-    class:list={[
-      'prose prose-zinc dark:prose-invert',
-      'prose-img:rounded-md prose-a:underline-offset-4',
-      'prose-headings:font-normal prose-a:hover:decoration-amber/80',
-      'prose-a:decoration-amber max-w-2xl',
-    ]}
-  >
-    <Content />
-  </article>
+  <main>
+    <article
+      class:list={[
+        'prose max-w-2xl mx-auto prose-zinc dark:prose-invert',
+        'prose-img:rounded-md prose-a:underline-offset-4',
+        'prose-headings:font-normal prose-a:hover:decoration-amber/80',
+        'prose-a:decoration-amber prose-hr:border-dashed',
+        'prose-blockquote:rounded-sm prose-blockquote:border-amber/40'
+      ]}
+    >
+      <Content />
+    </article>
+  </main>
 </Layout>

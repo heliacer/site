@@ -18,14 +18,16 @@ const label = parent?.data.title ?? 'Blog'
 
 <header>
   <Back href={href}>{label}</Back>
-  <h1 class='text-4xl my-4'>
-    <span class='text-amber'>{blog.title.charAt(0)}</span>
-    {blog.title.substring(1)}
-  </h1>
-  <p class='my-3 text-ui-400'>{blog.descr}</p>
-  <p class='text-sm text-ui-500'>
-    {blog.upd ? 'Last updated ' : 'Published '}
-    <time datetime={date.toISOString()}>{date.toLocaleDateString()}</time>
-  </p>
-  <hr class='my-4 text-ui-800' />
+  <div class='max-w-2xl mx-auto 2xl:mx-0'>
+    <h1 class='text-4xl my-4'>
+      <span class='text-amber'>{blog.title.charAt(0)}</span>
+      {blog.title.substring(1)}
+    </h1>
+    <p class='my-3 text-ui-400'>{blog.descr}</p>
+    <p class='text-sm text-ui-500'>
+      {blog.upd ? 'Last updated ' : 'Published '}
+      <time datetime={date.toISOString()}>{date.toLocaleDateString()}</time>
+    </p>
+    <hr class='my-4 border-dashed text-ui-800' />
+  </div>
 </header>

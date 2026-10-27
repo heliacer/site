@@ -28,8 +28,16 @@
 /* other blog styles (mdx) */
 
 .note {
-  background-color: color-mix(in oklab, var(--color-teal) 50%, transparent);
-  border: 1px solid var(--color-teal);
+  background-color: color-mix(in oklab, var(--color-teal) 30%, transparent);
+  border: 1px solid color-mix(in oklab, var(--color-teal) 70%, transparent);
   border-radius: 8px;
   padding-inline: 16px;
+}
+
+.amber {
+  color: var(--color-amber);
+}
+
+.teal {
+  color: var(--color-teal);
 }
