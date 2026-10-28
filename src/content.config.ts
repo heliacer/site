@@ -10,7 +10,6 @@ const blog = defineCollection({
       pub: z.date(),
       upd: z.date().optional(),
       descr: z.string(),
-      author: z.string().default('Heliacer'),
       cover: z
         .object({
           src: image(),
