@@ -17,7 +17,10 @@ const blog = defineCollection({
           alt: z.string().min(1)
         })
         .optional(),
-      tags: z.array(z.string()).default([])
+      tags: z.array(z.string()).default([]),
+
+      /** @temporary (!) */
+      noindex: z.boolean().default(false)
     })
 })
 
