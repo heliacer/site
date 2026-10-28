@@ -10,6 +10,6 @@ tags:
     - platform
 ---
 
-gunga ginga
+🚧 _Work in progress_
 
 [graplet architecture](/blog/graplet/architecture)

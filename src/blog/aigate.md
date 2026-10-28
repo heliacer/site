@@ -9,10 +9,19 @@ tags:
     - 3d
     - platform
 ---
+🚧 _Work in progress, needs some polishing_
+
 *(This was before AI existed btw, so the name is kinda misleading)*
 
+<figure>
+
 !["Ruleset" for the Hackathon Minigame "AI GATE"](@/assets/images/aigate-ruleset.png)
-> *"Ruleset" for the Hackathon Minigame "AI GATE*
+
+<figcaption>
+"Ruleset" for the Hackathon Minigame "AI GATE".
+</figcaption>
+</figure>
+
 
 In this miniproject the aim is to prove that you *are* a robot.
 It sounds weird (because it's usually the opposite), but that was the topic for the Hackathon “Functionally Dysfunctional”.

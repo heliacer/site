@@ -7,4 +7,6 @@ cover:
   alt: The homepage of heliacer.ch
 ---
 
-![absolute cinema](https://media1.tenor.com/m/SeLBRCUiQaoAAAAd/absolute-cinema-cinema.gif)
+🚧 _Work in progress. Go see the Graplet V3 post!_
+
+![rico kaboom](https://media1.tenor.com/m/qrvDob0EL3EAAAAC/rico-kaboom.gif)

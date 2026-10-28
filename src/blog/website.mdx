@@ -13,6 +13,10 @@ tags:
 
 🚧 _Work in progress_
 
+<div class='note'>
+**Note**: This post serves as a markdown spec for testing. If you want a custom website, contact me per mail (heliacer@gmx.ch) 
+</div>
+
 Normal text
 
 Paragraph. Lorem ipsum dolor sit amet text and no continuation because i don't want to waste my time going to the "lorem ipsum" website copying the actual text, but waste my time here writing this stupid text instead.
@@ -139,8 +143,6 @@ Hidden **markdown** content inside details.
 
 </details>
 
-<!-- html comment, should not render -->
-
 ### Link reference definitions
 
 [reference link][heliacer] and [another one][gh] and [implicit link][].
@@ -229,15 +231,11 @@ just a newline in source.
 
 [inline link](https://heliacer.ch "with title")
 
-[relative link](/about)
+[relative link](/blog/)
 
-[link with <angle> destination](<https://example.com/a b>)
+[popup link](/#)
 
 ### Autolinks
-
-<https://heliacer.ch>
-
-<hello@heliacer.ch>
 
 Extended autolinks: www.heliacer.ch and https://astro.build and hello@heliacer.ch
 
@@ -253,25 +251,6 @@ Extended autolinks: www.heliacer.ch and https://astro.build and hello@heliacer.c
 
 Press <kbd>Ctrl</kbd> + <kbd>C</kbd>, H<sub>2</sub>O, x<sup>2</sup>, <mark>marked</mark>, <ins>inserted</ins>.
 
-## Beyond the spec: GitHub extensions
-
-### Alerts
-
-> [!NOTE]
-> Useful information that users should know.
-
-> [!TIP]
-> Helpful advice for doing things better.
-
-> [!IMPORTANT]
-> Key information users need to know.
-
-> [!WARNING]
-> Urgent info that needs immediate attention.
-
-> [!CAUTION]
-> Advises about risks or negative outcomes.
-
 ### Footnotes
 
 Here is a sentence with a footnote.[^1] And another one.[^note]
@@ -282,16 +261,6 @@ Here is a sentence with a footnote.[^1] And another one.[^note]
 ### Emoji shortcodes
 
 :rocket: :tada: :construction: (unicode: 🚀 🎉 🚧)
-
-### Math
-
-Inline: $E = mc^2$
-
-Block:
-
-$$
-\int_0^\infty e^{-x^2}\,dx = \frac{\sqrt{\pi}}{2}
-$$
 
 ### Mermaid
 
