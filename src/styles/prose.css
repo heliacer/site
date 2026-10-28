@@ -28,10 +28,16 @@
 /* other blog styles (mdx) */
 
 .note {
-  background-color: color-mix(in oklab, var(--color-teal) 30%, transparent);
-  border: 1px solid color-mix(in oklab, var(--color-teal) 70%, transparent);
+  --note: var(--color-amber);
+  background-color: color-mix(in oklab, var(--note) 30%, transparent);
+  border: 1px solid color-mix(in oklab, var(--note) 70%, transparent);
   border-radius: 8px;
-  padding-inline: 16px;
+  padding-inline: 20px;
+  margin-bottom: 24px;
+}
+
+.note-teal {
+  --note: var(--color-teal)
 }
 
 .amber {
@@ -40,4 +46,15 @@
 
 .teal {
   color: var(--color-teal);
+}
+
+/* satteri heading link styles */
+
+.satteri-heading-link {
+  display: flex;
+  align-items: baseline;
+  gap: 0.4em;
+}
+.satteri-heading-link__heading {
+  margin: 0;
 }
