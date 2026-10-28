@@ -1,5 +1,6 @@
-import { satteri } from '@astrojs/markdown-satteri'
+import { satteri, satteriHeadingIdsPlugin } from '@astrojs/markdown-satteri'
 import { defineConfig, fontProviders } from 'astro/config'
+import { satteriHeadingLink } from 'satteri-heading-link'
 import { Anchor } from '@/plugins/anchor'
 import { satteriEmoji } from 'satteri-emoji'
 import sitemap from '@astrojs/sitemap'
@@ -7,7 +8,7 @@ import vercel from '@astrojs/vercel'
 import node from '@astrojs/node'
 import tailwindcss from '@tailwindcss/vite'
 
-import mdx from '@astrojs/mdx';
+import mdx from '@astrojs/mdx'
 
 let adapter = vercel({ webAnalytics: { enabled: true } })
 
@@ -35,7 +36,11 @@ export default defineConfig({
   ],
   markdown: {
     processor: satteri({
-      hastPlugins: [Anchor],
+      hastPlugins: [
+        Anchor,
+        () => satteriHeadingIdsPlugin(),
+        satteriHeadingLink({ icon: '#' })
+      ],
       mdastPlugins: [satteriEmoji({ shortcodes: ['emojibase'] })]
     })
   },

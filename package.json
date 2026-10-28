@@ -34,6 +34,7 @@
     "astro": "^7.4.0",
     "satteri": "^0.10.5",
     "satteri-emoji": "^0.2.1",
+    "satteri-heading-link": "^0.3.0",
     "tailwindcss": "^4.3.3"
   },
   "devDependencies": {
