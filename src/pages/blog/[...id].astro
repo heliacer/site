@@ -26,9 +26,31 @@ const cut = post.id.lastIndexOf('/')
 const parent = cut === -1 ? null : await getEntry('blog', post.id.slice(0, cut))
 const href = parent ? `/blog/${parent.id}/` : '/blog/'
 const label = parent?.data.title ?? 'Blog'
+
+const posting = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: post.data.title,
+  description: post.data.descr,
+  datePublished: post.data.pub.toISOString(),
+  dateModified: date.toISOString(),
+  author: {
+    '@type': 'Person',
+    '@id': 'https://heliacer.ch/#person',
+    name: 'Francisco Engler',
+    url: 'https://heliacer.ch'
+  },
+  url: new URL(Astro.url.pathname, Astro.site).href
+}
 ---
 
-<Layout title={post.data.title}>
+<Layout
+  title={post.data.title}
+  description={post.data.descr}
+  cover={post.data.cover}
+  noindex={post.data.noindex}
+>
+  <script is:inline type='application/ld+json' set:html={JSON.stringify(posting)} />
   <Back href={href}>{label}</Back>
   <main class='max-w-2xl mx-auto 2xl:mx-0'>
     <header>

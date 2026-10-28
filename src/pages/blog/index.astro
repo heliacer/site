@@ -12,7 +12,10 @@ const posts = (await getCollection('blog')).sort((a, b) => {
 })
 ---
 
-<Layout title='Blog'>
+<Layout
+  title='Blog'
+  description='Projects and stuff, mostly written in English'
+>
   <Back href='/'>Home</Back>
   <main class='flex gap-4'>
     <main class='flex-1 min-w-0'>
