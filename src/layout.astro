@@ -1,29 +1,56 @@
 ---
 import './styles/global.css'
-import { Font } from 'astro:assets'
+import { Font, getImage } from 'astro:assets'
 import Nav from './components/Nav.astro'
 import Footer from './components/Footer.astro'
+import capucins from './assets/capucins.jpeg'
 
 interface Props {
   title?: string
+  description?: string
+  cover?: { src: ImageMetadata; alt: string }
   noindex?: boolean
 }
 
-const { title, noindex } = Astro.props
+const {
+  title,
+  description = 'Swiss guy interested in physics. I build Graplet, a 3D Editor for the browser',
+  cover = {
+    src: capucins,
+    alt: 'Francisco at Les Capucins, Brest, with the Penfeld river and the Pont de Recouvrance behind him.'
+  },
+  noindex
+} = Astro.props
+
+const canonical = new URL(Astro.url.pathname, Astro.site).href
+const og = await getImage({ src: cover.src, format: 'jpg', width: 1200 })
+const ogImage = new URL(og.src, Astro.site).href
 ---
 
 <html lang='en'>
   <head>
     <meta charset='utf-8' />
     <link rel='sitemap' href='/sitemap-index.xml' />
+    <link rel='alternate' type='application/rss+xml' href='/rss.xml' />
 
     <!-- @temporary (!) -->
     {noindex && <meta name='robots' content='noindex' />}
+    
     <link rel='icon' href='/favicon.ico' />
     <Font cssVariable='--font-roboto' preload />
     <meta name='viewport' content='width=device-width' />
     <meta name='generator' content={Astro.generator} />
     <title>Heliacer{title !== undefined && ' · ' + title}</title>
+    <meta name='description' content={description} />
+    <link rel='canonical' href={canonical} />
+    <meta property='og:title' content={title ?? 'Heliacer'} />
+    <meta property='og:description' content={description} />
+    <meta property='og:url' content={canonical} />
+    <meta property='og:type' content='website' />
+    <meta property='og:site_name' content='heliacer.ch' />
+    <meta property='og:image' content={ogImage} />
+    <meta property='og:image:alt' content={cover.alt} />
+    <meta name='twitter:card' content='summary_large_image' />
     <script is:inline>
       {
         const t = () =>
