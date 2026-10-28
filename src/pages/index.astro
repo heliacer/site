@@ -13,9 +13,25 @@ import SocialLink from '@/components/SocialLink.astro'
 
 const capucinsAlt =
   'Francisco at Les Capucins, Brest, with the Penfeld river and the Pont de Recouvrance behind him.'
----
 
+const person = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  '@id': 'https://heliacer.ch/#person',
+  name: 'Francisco Engler',
+  alternateName: 'Heliacer',
+  url: 'https://heliacer.ch',
+  sameAs: [
+    'https://github.com/heliacer',
+    'https://www.linkedin.com/in/frenchfrieszh/',
+    'https://www.instagram.com/frenchfries.zh',
+    'https://x.com/frenchfrieszh'
+  ]
+}
+
+---
 <Layout>
+  <script is:inline type='application/ld+json' set:html={JSON.stringify(person)} />
   <main>
     <SSA class='text-amber h-5 my-4.75' />
     <h1 class='my-4 text-4xl'>
