@@ -19,15 +19,15 @@ noindex: true
 **Note**: This post serves as a markdown spec for testing. If you want a custom website, contact me per mail (heliacer@gmx.ch) 
 </div>
 
-Normal text
+*Also, this page is marked as noindex[^1], as soon as the actual post is live, it will be added to the sitemap again.*
+
+[^1]: Tag used to exclude them from sitemap
 
 Paragraph. Lorem ipsum dolor sit amet text and no continuation because i don't want to waste my time going to the "lorem ipsum" website copying the actual text, but waste my time here writing this stupid text instead.
 
 [heliacer website link](https://heliacer.ch)
 
 ![capucins image](@/assets/images/wallberg.png)
-
-Horizontal rule below
 
 ---
 
@@ -91,14 +91,12 @@ Some text
 - list
 
 ```ts
-const tsCode = 'what up'
+const tscode = 'hey choom'
 // comment
 function foo() {
-  type Date = { goo: 'gaa' }
+  type Date = { glob: 'glab' }
 }
 ```
-
-## Spec: leaf blocks
 
 ### Thematic breaks
 
@@ -107,11 +105,6 @@ function foo() {
 ***
 
 ___
-
-### Indented code block
-
-    this is indented code
-    four spaces, no language, no highlighting
 
 ### Fenced code (variants)
 
@@ -164,12 +157,6 @@ Hidden **markdown** content inside details.
 | a    |   b    |     c |
 | `code` | **bold** | [link](https://heliacer.ch) |
 | pipe \| escaped | ~~strike~~ | _italic_ |
-
-Minimal table:
-
-a | b
-- | -
-1 | 2
 
 ## Spec: container blocks
 
@@ -255,9 +242,9 @@ Press <kbd>Ctrl</kbd> + <kbd>C</kbd>, H<sub>2</sub>O, x<sup>2</sup>, <mark>marke
 
 ### Footnotes
 
-Here is a sentence with a footnote.[^1] And another one.[^note]
+Here is a sentence with a footnote.[^2] And another one.[^note]
 
-[^1]: The first footnote.
+[^2]: The second footnote.
 [^note]: A named footnote with **markdown** and a [link](https://heliacer.ch).
 
 ### Emoji shortcodes

@@ -12,4 +12,4 @@ tags:
 
 🚧 _Work in progress_
 
-[graplet architecture](/blog/graplet/architecture)
+[Graplet Architecture, (subfolder)](/blog/graplet/architecture)
