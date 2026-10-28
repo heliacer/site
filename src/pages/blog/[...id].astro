@@ -52,5 +52,15 @@ const label = parent?.data.title ?? 'Blog'
       {post.data.upd ? 'Last updated ' : 'Published '}
       <time datetime={date.toISOString()}>{date.toLocaleDateString()}</time>
     </p>
+    <script
+      src='https://utteranc.es/client.js'
+      data-repo='heliacer/site'
+      data-issue-term='pathname'
+      data-label='Comment'
+      data-theme='github-dark'
+      crossorigin='anonymous'
+      async
+      is:inline
+    ></script>
   </main>
 </Layout>
