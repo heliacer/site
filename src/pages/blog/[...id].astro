@@ -1,9 +1,9 @@
 ---
 import '@/styles/prose.css'
-import { getCollection, render } from 'astro:content'
+import { getCollection, getEntry, render } from 'astro:content'
 import type { InferGetStaticPropsType } from 'astro'
 import Layout from '@/layout.astro'
-import BlogHeader from '@/components/BlogHeader.astro'
+import Back from '@/components/Back.astro'
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog')
@@ -18,14 +18,28 @@ type Props = InferGetStaticPropsType<typeof getStaticPaths>
 
 const { post } = Astro.props
 const { Content } = await render(post)
+
+const date = post.data.upd ?? post.data.pub
+
+/** for block back button */
+const cut = post.id.lastIndexOf('/')
+const parent = cut === -1 ? null : await getEntry('blog', post.id.slice(0, cut))
+const href = parent ? `/blog/${parent.id}/` : '/blog/'
+const label = parent?.data.title ?? 'Blog'
 ---
 
 <Layout title={post.data.title}>
-  <BlogHeader blog={post.data} id={post.id} />
-  <main>
+  <Back href={href}>{label}</Back>
+  <main class='max-w-2xl mx-auto 2xl:mx-0'>
+    <header>
+      <h1 class='text-4xl my-4'>
+        <span class='text-amber'>{post.data.title.charAt(0)}</span>
+        {post.data.title.substring(1)}
+      </h1>
+    </header>
     <article
       class:list={[
-        'prose max-w-2xl mx-auto prose-zinc dark:prose-invert',
+        'prose prose-zinc max-w-none dark:prose-invert',
         'prose-img:rounded-md prose-a:underline-offset-4',
         'prose-headings:font-normal prose-a:hover:decoration-amber/80',
         'prose-a:decoration-amber prose-hr:border-dashed',
@@ -34,5 +48,9 @@ const { Content } = await render(post)
     >
       <Content />
     </article>
+    <p class='text-sm text-ui-500 my-4'>
+      {post.data.upd ? 'Last updated ' : 'Published '}
+      <time datetime={date.toISOString()}>{date.toLocaleDateString()}</time>
+    </p>
   </main>
 </Layout>
