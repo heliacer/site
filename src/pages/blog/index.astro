@@ -1,7 +1,7 @@
 ---
 import Layout from '@/layout.astro'
 import BlogCard from '@/components/BlogCard.astro'
-import { ArrowLeftRight } from '@lucide/astro'
+import { ArrowLeftRight, Rss } from '@lucide/astro'
 import { getCollection } from 'astro:content'
 import Back from '@/components/Back.astro'
 
@@ -53,6 +53,17 @@ const posts = (await getCollection('blog')).sort((a, b) => {
           placeholder='Search...'
           class='my-4 py-1.25 px-2.5 w-full text-sm rounded-lg bg-ui-900/50'
         />
+        <a
+          href='/rss.xml'
+          class:list={[
+            'text-sm flex gap-2 items-center',
+            'underline underline-offset-4 decoration-amber',
+            'hover:decoration-amber/80'
+          ]}
+        >
+          <Rss size={14} />
+          rss.xml
+        </a>
       </aside>
     </div>
   </main>
