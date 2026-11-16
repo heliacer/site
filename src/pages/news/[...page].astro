@@ -1,0 +1,80 @@
+---
+import '@/styles/prose.css'
+import { getCollection, render } from 'astro:content'
+import type { GetStaticPaths, InferGetStaticPropsType } from 'astro'
+import Layout from '@/layout.astro'
+import Back from '@/components/Back.astro'
+import { ArrowLeft, ArrowRight } from '@lucide/astro'
+import { proseStyles } from '@/components/shared'
+
+export const getStaticPaths = (async ({ paginate }) => {
+  const news = (await getCollection('news')).sort(
+    (a, b) => b.data.pub.getTime() - a.data.pub.getTime()
+  )
+  return paginate(news, { pageSize: 5 })
+}) satisfies GetStaticPaths
+
+type Props = InferGetStaticPropsType<typeof getStaticPaths>
+
+const { page } = Astro.props
+const posts = await Promise.all(
+  page.data.map(async post => ({ post, ...(await render(post)) }))
+)
+
+const pager = [
+  { href: page.url.prev, Icon: ArrowLeft, text: 'Previous' },
+  { href: page.url.next, Icon: ArrowRight, text: 'Next' }
+]
+
+/** fixed locale and zone, so the build machine can't change what is shown */
+const when = new Intl.DateTimeFormat('de-CH', {
+  dateStyle: 'medium',
+  timeStyle: 'short',
+  timeZone: 'UTC'
+})
+
+const line = 'Small Updates and Changelogs'
+---
+
+<Layout title='News' description={line}>
+  <Back href='/'>Home</Back>
+  <main class='max-w-2xl mx-auto 2xl:mx-0'>
+    <h1 class='text-4xl my-4 first-letter:text-amber'>News</h1>
+    <p class='text-ui-400'>{line}</p>
+    {posts.map(({ post, Content }) => (
+      <article id={post.id} class='py-6 border-t border-dashed border-ui-800'>
+        <time
+          class='text-sm text-ui-400'
+          datetime={post.data.pub.toISOString()}
+        >
+          {when.format(post.data.pub)}
+        </time>
+        <h2 class='text-lg my-1 first-letter:text-amber'>{post.data.title}</h2>
+        <div class:list={[proseStyles]}>
+          <Content />
+        </div>
+      </article>
+    ))}
+    <nav class='flex gap-1 my-4'>
+      {pager.map(({ href, Icon, text }) => {
+        const Tag = href ? 'a' : 'span'
+        return (
+          <Tag
+            href={href}
+            class:list={[
+              'flex items-center gap-1 rounded-md text-sm p-1 px-2',
+              'border border-transparent bg-ui-900 md:bg-transparent text-ui-400',
+              href
+                ? 'active:border-ui-950 hover:text-ui-200 hover:bg-ui-900'
+                : 'opacity-60',
+              text === 'Next' && 'flex-row-reverse'
+            ]}
+          >
+            <Icon size={14} />
+            {text}
+          </Tag>
+        )
+      })}
+    </nav>
+  </main>
+</Layout>

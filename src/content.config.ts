@@ -23,4 +23,12 @@ const work = defineCollection({
     })
 })
 
-export const collections = { work }
+const news = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/news' }),
+  schema: z.object({
+    title: z.string(),
+    pub: z.date()
+  })
+})
+
+export const collections = { work, news }
