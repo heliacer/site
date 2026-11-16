@@ -63,7 +63,9 @@ const posting = {
     </article>
     <p class='text-sm text-ui-500 my-4'>
       {post.data.upd ? 'Last updated ' : 'Published '}
-      <time datetime={date.toISOString()}>{date.toLocaleDateString()}</time>
+      <time datetime={date.toISOString()}>
+        {date.toLocaleDateString('de-CH', { dateStyle: 'medium' })}
+      </time>
     </p>
     <div class='giscus'></div>
     <script is:inline>

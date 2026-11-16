@@ -20,7 +20,7 @@ const date = work.upd ?? work.pub
     href={`/work/${id}`}
   >
     <time class='text-sm pt-4 text-ui-400' datetime={date.toISOString()}>
-      {date.toLocaleDateString()}
+      {date.toLocaleDateString('de-CH', { dateStyle: 'medium' })}
     </time>
     <h2 class='text-lg first-letter:text-amber'>{work.title}</h2>
     <p class='text-ui-400 line-clamp-2 min-h-[2lh]'>{work.descr}</p>
