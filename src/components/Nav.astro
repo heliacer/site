@@ -17,7 +17,7 @@ const menus = [
   </a>
   <ul
     class:list={[
-      'fixed sm:static flex gap-0.5 rounded-lg p-0.5',
+      'fixed sm:static flex sm:gap-0.5 rounded-lg p-1 sm:p-0.5',
       'text-sm bg-ui-900/50 border border-ui-800',
       'bottom-0 left-1/2 -translate-1/2 sm:translate-0',
       'backdrop-blur-md z-10'
@@ -27,7 +27,7 @@ const menus = [
       <li>
         <a
           class:list={[
-            'block py-0.5 px-2.5 rounded-md border border-transparent',
+            'block px-3.25 py-0.75 sm:py-0.5 sm:px-2.5 rounded-md border border-transparent',
             pathname === menu.path
               ? 'bg-amber/25'
               : 'hover:bg-ui-800/50 active:border-ui-950/50'
