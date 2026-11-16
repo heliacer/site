@@ -9,10 +9,16 @@ import Insta from '@/assets/icons/insta.svg'
 import X from '@/assets/icons/x.svg'
 import capucins from '@/assets/capucins.jpeg'
 import mail from '@/assets/icons/mail.png'
-import SocialLink from '@/components/SocialLink.astro'
 
 const capucinsAlt =
   'Francisco at Les Capucins, Brest, with the Penfeld river and the Pont de Recouvrance behind him.'
+
+const socials = [
+  { href: 'https://github.com/heliacer', Icon: Github },
+  { href: 'https://www.linkedin.com/in/frenchfrieszh/', Icon: LinkedIn },
+  { href: 'https://www.instagram.com/frenchfries.zh', Icon: Insta },
+  { href: 'https://x.com/frenchfrieszh', Icon: X }
+]
 
 const person = {
   '@context': 'https://schema.org',
@@ -21,12 +27,7 @@ const person = {
   name: 'Francisco Engler',
   alternateName: 'Heliacer',
   url: 'https://heliacer.ch',
-  sameAs: [
-    'https://github.com/heliacer',
-    'https://www.linkedin.com/in/frenchfrieszh/',
-    'https://www.instagram.com/frenchfries.zh',
-    'https://x.com/frenchfrieszh'
-  ]
+  sameAs: socials.map(social => social.href)
 }
 
 ---
@@ -34,10 +35,7 @@ const person = {
   <script is:inline type='application/ld+json' set:html={JSON.stringify(person)} />
   <main>
     <SSA class='text-amber h-5 my-4.75' />
-    <h1 class='my-4 text-4xl'>
-      <span class='text-amber'>F</span>
-      rancisco
-    </h1>
+    <h1 class='my-4 text-4xl first-letter:text-amber'>Francisco</h1>
     <p class='text-ui-400'>
       Swiss guy interested in physics
       <br />I build <span class='italic'>Graplet</span>, a 3D Editor for the
@@ -83,18 +81,16 @@ const person = {
         <p class='text-xs italic text-ui-400 my-3'>Les Capucins, Brest</p>
       </section>
       <div class='flex gap-2.5 mb-2 sm:flex-col'>
-        <SocialLink href='https://github.com/heliacer'>
-          <Github class='w-4' />
-        </SocialLink>
-        <SocialLink href='https://www.linkedin.com/in/frenchfrieszh/'>
-          <LinkedIn class='w-4' />
-        </SocialLink>
-        <SocialLink href='https://www.instagram.com/frenchfries.zh'>
-          <Insta class='w-4' />
-        </SocialLink>
-        <SocialLink href='https://x.com/frenchfrieszh'>
-          <X class='w-4' />
-        </SocialLink>
+        {socials.map(({ href, Icon }) => (
+          <a
+            href={href}
+            target='_blank'
+            rel='noopener noreferrer'
+            class='p-2 rounded-lg sm:hover:rotate-5 hover:transition active:scale-95 hover:bg-ui-900'
+          >
+            <Icon class='w-4' />
+          </a>
+        ))}
       </div>
     </div>
     <div class='group flex gap-2 items-center'>

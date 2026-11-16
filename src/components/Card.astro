@@ -11,11 +11,7 @@ const { work, id } = Astro.props
 const date = work.upd ?? work.pub
 ---
 
-<li
-  data-id={id}
-  data-date={date.getTime()}
-  data-tags={work.tags.join(' ')}
->
+<li data-tags={work.tags.join(' ')}>
   <a
     class:list={[
       'flex flex-col gap-1 py-2 md:px-4 rounded-lg border border-transparent',
@@ -26,10 +22,7 @@ const date = work.upd ?? work.pub
     <time class='text-sm pt-4 text-ui-400' datetime={date.toISOString()}>
       {date.toLocaleDateString()}
     </time>
-    <h2 class='text-lg'>
-      <span class='text-amber'>{work.title.charAt(0)}</span>
-      {work.title.substring(1)}
-    </h2>
+    <h2 class='text-lg first-letter:text-amber'>{work.title}</h2>
     <p class='text-ui-400 line-clamp-2 min-h-[2lh]'>{work.descr}</p>
     <div class='flex flex-wrap gap-1 my-1 h-4.5'>
       {work.tags.map(tag => (

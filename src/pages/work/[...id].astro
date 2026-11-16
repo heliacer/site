@@ -22,7 +22,6 @@ const { Content } = await render(post)
 
 const date = post.data.upd ?? post.data.pub
 
-/** for block back button */
 const cut = post.id.lastIndexOf('/')
 const parent = cut === -1 ? null : await getEntry('work', post.id.slice(0, cut))
 const href = parent ? `/work/${parent.id}` : '/work/'
@@ -58,12 +57,7 @@ const posting = {
   />
   <Back href={href}>{label}</Back>
   <main class='max-w-2xl mx-auto 2xl:mx-0'>
-    <header>
-      <h1 class='text-4xl my-4'>
-        <span class='text-amber'>{post.data.title.charAt(0)}</span>
-        {post.data.title.substring(1)}
-      </h1>
-    </header>
+    <h1 class='text-4xl my-4 first-letter:text-amber'>{post.data.title}</h1>
     <article class:list={proseStyles}>
       <Content />
     </article>
@@ -79,7 +73,6 @@ const posting = {
 
         const s = document.createElement('script')
         s.src = 'https://giscus.app/client.js'
-        s.async = true
         s.crossOrigin = 'anonymous'
         Object.assign(s.dataset, {
           repo: 'heliacer/site',
@@ -88,10 +81,7 @@ const posting = {
           categoryId: 'DIC_kwDOR8Tf7c4DLQr7',
           mapping: 'pathname',
           strict: '1',
-          reactionsEnabled: '1',
-          emitMetadata: '0',
           inputPosition: 'top',
-          lang: 'en',
           loading: 'lazy',
           theme: theme()
         })
