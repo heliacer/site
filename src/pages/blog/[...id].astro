@@ -50,7 +50,11 @@ const posting = {
   cover={post.data.cover}
   noindex={post.data.noindex}
 >
-  <script is:inline type='application/ld+json' set:html={JSON.stringify(posting)} />
+  <script
+    is:inline
+    type='application/ld+json'
+    set:html={JSON.stringify(posting)}
+  />
   <Back href={href}>{label}</Back>
   <main class='max-w-2xl mx-auto 2xl:mx-0'>
     <header>
@@ -74,15 +78,41 @@ const posting = {
       {post.data.upd ? 'Last updated ' : 'Published '}
       <time datetime={date.toISOString()}>{date.toLocaleDateString()}</time>
     </p>
-    <script
-      src='https://utteranc.es/client.js'
-      data-repo='heliacer/site'
-      data-issue-term='pathname'
-      data-label='Comment'
-      data-theme='github-dark'
-      crossorigin='anonymous'
-      async
-      is:inline
-    ></script>
+    <div class='giscus'></div>
+    <script is:inline>
+      {
+        const theme = () =>
+          document.documentElement.classList.contains('dark') ? 'dark' : 'light'
+
+        const s = document.createElement('script')
+        s.src = 'https://giscus.app/client.js'
+        s.async = true
+        s.crossOrigin = 'anonymous'
+        Object.assign(s.dataset, {
+          repo: 'heliacer/site',
+          repoId: 'R_kgDOR8Tf7Q',
+          category: 'Announcements',
+          categoryId: 'DIC_kwDOR8Tf7c4DLQr7',
+          mapping: 'pathname',
+          strict: '1',
+          reactionsEnabled: '1',
+          emitMetadata: '0',
+          inputPosition: 'top',
+          lang: 'en',
+          loading: 'lazy',
+          theme: theme()
+        })
+        document.currentScript.after(s)
+
+        new MutationObserver(() =>
+          document
+            .querySelector('iframe.giscus-frame')
+            ?.contentWindow.postMessage(
+              { giscus: { setConfig: { theme: theme() } } },
+              'https://giscus.app'
+            )
+        ).observe(document.documentElement, { attributeFilter: ['class'] })
+      }
+    </script>
   </main>
 </Layout>
