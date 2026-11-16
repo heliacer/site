@@ -6,7 +6,7 @@ import Layout from '@/layout.astro'
 import Back from '@/components/Back.astro'
 
 export async function getStaticPaths() {
-  const posts = await getCollection('blog')
+  const posts = await getCollection('work')
 
   return posts.map(post => ({
     params: { id: post.id },
@@ -23,13 +23,13 @@ const date = post.data.upd ?? post.data.pub
 
 /** for block back button */
 const cut = post.id.lastIndexOf('/')
-const parent = cut === -1 ? null : await getEntry('blog', post.id.slice(0, cut))
-const href = parent ? `/blog/${parent.id}/` : '/blog/'
-const label = parent?.data.title ?? 'Blog'
+const parent = cut === -1 ? null : await getEntry('work', post.id.slice(0, cut))
+const href = parent ? `/work/${parent.id}` : '/work/'
+const label = parent?.data.title ?? 'Work'
 
 const posting = {
   '@context': 'https://schema.org',
-  '@type': 'BlogPosting',
+  '@type': 'Article',
   headline: post.data.title,
   description: post.data.descr,
   datePublished: post.data.pub.toISOString(),

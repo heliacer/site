@@ -1,31 +1,30 @@
 ---
 import Layout from '@/layout.astro'
-import BlogCard from '@/components/BlogCard.astro'
+import Card from '@/components/Card.astro'
 import { ArrowLeftRight, Rss } from '@lucide/astro'
 import { getCollection } from 'astro:content'
 import Back from '@/components/Back.astro'
 
-const posts = (await getCollection('blog')).sort((a, b) => {
+const posts = (await getCollection('work')).sort((a, b) => {
   const aTime = a.data.upd ?? a.data.pub
   const bTime = b.data.upd ?? b.data.pub
   return bTime.getTime() - aTime.getTime()
 })
+
+const line = 'Projects, Articles, and other Stuff'
 ---
 
-<Layout
-  title='Blog'
-  description='Projects and stuff, mostly written in English'
->
+<Layout title='Work' description={line}>
   <Back href='/'>Home</Back>
   <main class='flex gap-4'>
     <main class='flex-1 min-w-0'>
       <h1 class='text-4xl my-4'>
-        <span class='text-amber'>B</span>log
+        <span class='text-amber'>W</span>ork
       </h1>
-      <p class='text-ui-400'>Projects and stuff, mostly written in English</p>
+      <p class='text-ui-400'>{line}</p>
       <ul id='posts' class='my-4 grid lg:grid-cols-2 2xl:grid-cols-3 gap-4'>
         {posts.map(post => (
-          <BlogCard id={post.id} blog={post.data} />
+          <Card id={post.id} work={post.data} />
         ))}
       </ul>
     </main>

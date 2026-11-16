@@ -3,7 +3,7 @@ title: Heliacer.ch
 pub: 2026-10-20
 descr: How this site was crafted
 cover:
-  src: ../assets/images/heliacer.png
+  src: '@/assets/images/heliacer.png'
   alt: The homepage of heliacer.ch
 ---
 

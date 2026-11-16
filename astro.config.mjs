@@ -18,6 +18,11 @@ if (process.argv.includes('--node')) {
 
 export default defineConfig({
   site: 'https://heliacer.ch',
+  /** @temporary until indexing done */
+  redirects: {
+    '/blog': '/work',
+    '/blog/[...id]': '/work/[...id]'
+  },
   integrations: [sitemap(), mdx()],
   prefetch: {
     defaultStrategy: 'viewport',

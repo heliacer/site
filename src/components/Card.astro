@@ -3,48 +3,48 @@ import type { InferEntrySchema } from 'astro:content'
 import { Image } from 'astro:assets'
 
 interface Props {
-  blog: InferEntrySchema<'blog'>
+  work: InferEntrySchema<'work'>
   id: string
 }
 
-const { blog, id } = Astro.props
-const date = blog.upd ?? blog.pub
+const { work, id } = Astro.props
+const date = work.upd ?? work.pub
 ---
 
 <li
   data-id={id}
   data-date={date.getTime()}
-  data-search={`${blog.title} ${blog.descr} ${blog.tags.join(' ')}`.toLowerCase()}
+  data-search={`${work.title} ${work.descr} ${work.tags.join(' ')}`.toLowerCase()}
 >
   <a
     class:list={[
       'flex flex-col gap-1 py-2 md:px-4 rounded-lg border border-transparent',
       'hover:bg-ui-900/50 active:border-ui-950'
     ]}
-    href={`/blog/${id}`}
+    href={`/work/${id}`}
   >
     <time class='text-sm pt-4 text-ui-400' datetime={date.toISOString()}>
       {date.toLocaleDateString()}
     </time>
     <h2 class='text-lg'>
-      <span class='text-amber'>{blog.title.charAt(0)}</span>
-      {blog.title.substring(1)}
+      <span class='text-amber'>{work.title.charAt(0)}</span>
+      {work.title.substring(1)}
     </h2>
-    <p class='text-ui-400 line-clamp-2 min-h-[2lh]'>{blog.descr}</p>
+    <p class='text-ui-400 line-clamp-2 min-h-[2lh]'>{work.descr}</p>
     <div class='flex flex-wrap gap-1 my-1 h-4.5'>
-      {blog.tags.map(tag => (
+      {work.tags.map(tag => (
         <p class='rounded-md px-1 py-px bg-amber/20 text-ui-300 text-xs'>
           # {tag}
         </p>
       ))}
     </div>
-    {blog.cover ? (
+    {work.cover ? (
       <Image
         class='rounded-md my-2 w-full aspect-2/1 object-cover'
         width={640}
         height={320}
-        src={blog.cover.src}
-        alt={blog.cover.alt}
+        src={work.cover.src}
+        alt={work.cover.alt}
       />
     ) : (
       <div class='aspect-2/1 my-2 text-sm italic text-ui-400'>[image needed]</div>

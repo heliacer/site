@@ -25,7 +25,7 @@
   mask-size: contain;
 }
 
-/* other blog styles (mdx) */
+/* other post styles (mdx) */
 
 .note {
   --note: var(--color-amber);

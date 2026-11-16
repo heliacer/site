@@ -3,7 +3,7 @@ import { getCollection } from 'astro:content'
 import type { APIContext } from 'astro'
 
 export async function GET(context: APIContext) {
-  const posts = await getCollection('blog', ({ data }) => !data.noindex)
+  const posts = await getCollection('work', ({ data }) => !data.noindex)
 
   return rss({
     title: 'heliacer.ch',
@@ -13,7 +13,7 @@ export async function GET(context: APIContext) {
       title: post.data.title,
       description: post.data.descr,
       pubDate: post.data.pub,
-      link: `/blog/${post.id}/`
+      link: `/work/${post.id}/`
     }))
   })
 }
