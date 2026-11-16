@@ -14,7 +14,7 @@ const date = work.upd ?? work.pub
 <li
   data-id={id}
   data-date={date.getTime()}
-  data-search={`${work.title} ${work.descr} ${work.tags.join(' ')}`.toLowerCase()}
+  data-tags={work.tags.join(' ')}
 >
   <a
     class:list={[

@@ -11,26 +11,28 @@ const posts = (await getCollection('work')).sort((a, b) => {
   return bTime.getTime() - aTime.getTime()
 })
 
+const tags = [...new Set(posts.flatMap(post => post.data.tags))].sort()
+
 const line = 'Projects, Articles, and other Stuff'
 ---
 
 <Layout title='Work' description={line}>
   <Back href='/'>Home</Back>
-  <main class='flex gap-4'>
-    <main class='flex-1 min-w-0'>
+  <main class='grid gap-x-4 md:grid-cols-[1fr_13.5rem]'>
+    <header>
       <h1 class='text-4xl my-4'>
         <span class='text-amber'>W</span>ork
       </h1>
       <p class='text-ui-400'>{line}</p>
-      <ul id='posts' class='my-4 grid lg:grid-cols-2 2xl:grid-cols-3 gap-4'>
-        {posts.map(post => (
-          <Card id={post.id} work={post.data} />
-        ))}
-      </ul>
-    </main>
-    <div class='hidden md:block w-54 shrink-0'>
-      <aside class='fixed inset-y-20 w-54 pl-4 border-l border-dashed border-ui-800'>
-        <h2 class='my-4'>Navigation</h2>
+    </header>
+    <nav class='md:w-54 md:col-start-2 md:row-start-1 md:row-span-2'>
+      <aside
+        class:list={[
+          'flex flex-col gap-3 py-4 border-b border-dashed border-ui-800',
+          'md:fixed md:inset-y-20 md:w-54 md:py-0 md:pl-4 md:border-b-0 md:border-l'
+        ]}
+      >
+        <h2 class='hidden md:block my-1'>Navigation</h2>
         <div class='flex gap-2 items-center text-sm'>
           Sort by:
           <span id='sortLabel' class='italic ml-auto w-12'>
@@ -39,7 +41,7 @@ const line = 'Projects, Articles, and other Stuff'
           <button
             id='sortButton'
             class:list={[
-              'p-1 rounded-md hover:bg-ui-900',
+              'p-1 rounded-md bg-ui-900 md:bg-transparent hover:bg-ui-900',
               'border border-transparent active:border-ui-950'
             ]}
           >
@@ -47,15 +49,34 @@ const line = 'Projects, Articles, and other Stuff'
           </button>
         </div>
         <input
-          id='blogsearch'
+          id='search'
           type='search'
           placeholder='Search...'
-          class='my-4 py-1.25 px-2.5 w-full text-sm rounded-lg bg-ui-900/50'
+          class='py-1.25 px-2.5 w-full text-sm rounded-lg bg-ui-900/50'
         />
+        <div
+          id='tags'
+          class='flex gap-x-1.5 gap-y-2 overflow-x-auto md:flex-wrap md:max-h-30 md:overflow-y-auto'
+        >
+          {tags.map(tag => (
+            <button
+              data-tag={tag}
+              aria-pressed='false'
+              class:list={[
+                'shrink-0 rounded-md px-1.5 py-px text-xs',
+                'border border-transparent',
+                'bg-ui-900/50 text-ui-400 hover:text-ui-200/80',
+                'aria-pressed:bg-amber/20 aria-pressed:text-ui-300'
+              ]}
+            >
+              # {tag}
+            </button>
+          ))}
+        </div>
         <a
           href='/rss.xml'
           class:list={[
-            'text-sm flex gap-2 items-center',
+            'hidden md:flex text-sm gap-2 items-center',
             'underline underline-offset-4 decoration-amber',
             'hover:decoration-amber/80'
           ]}
@@ -64,26 +85,50 @@ const line = 'Projects, Articles, and other Stuff'
           rss.xml
         </a>
       </aside>
-    </div>
+    </nav>
+    <ul
+      id='posts'
+      class='md:col-start-1 min-w-0 my-4 grid lg:grid-cols-2 2xl:grid-cols-3 gap-4'
+    >
+      {posts.map(post => (
+        <Card id={post.id} work={post.data} />
+      ))}
+    </ul>
   </main>
 </Layout>
 
 <script>
-  const sortButton = document.getElementById('sortButton')!
-  const sortLabel = document.getElementById('sortLabel')!
   const list = document.getElementById('posts')!
+  const cards = list.children as HTMLCollectionOf<HTMLElement>
+  const search = document.getElementById('search') as HTMLInputElement
+  const active = new Set<string>()
 
-  let newest = true
-  sortButton.addEventListener('click', () => {
-    newest = !newest
-    sortLabel.textContent = newest ? 'newest' : 'oldest'
-    list.append(...[...list.children].reverse())
+  function filter() {
+    const q = search.value.trim().toLowerCase()
+    for (const card of cards) {
+      const tags = card.dataset.tags!.split(' ')
+      card.hidden =
+        !card.textContent!.toLowerCase().includes(q) ||
+        ![...active].every(tag => tags.includes(tag))
+    }
+  }
+
+  search.addEventListener('input', filter)
+  document.getElementById('tags')!.addEventListener('click', e => {
+    const button = (e.target as HTMLElement).closest('button')
+    if (!button) return
+    const tag = button.dataset.tag!
+    const on = !active.delete(tag)
+    if (on) active.add(tag)
+    button.setAttribute('aria-pressed', String(on))
+    filter()
   })
 
-  const search = document.getElementById('blogsearch') as HTMLInputElement
-  search.addEventListener('input', () => {
-    const q = search.value.trim().toLowerCase()
-    for (const card of list.children as HTMLCollectionOf<HTMLElement>)
-      card.hidden = !card.textContent!.toLowerCase().includes(q)
+  const sortLabel = document.getElementById('sortLabel')!
+  let newest = true
+  document.getElementById('sortButton')!.addEventListener('click', () => {
+    newest = !newest
+    sortLabel.textContent = newest ? 'newest' : 'oldest'
+    list.append(...[...cards].reverse())
   })
 </script>
