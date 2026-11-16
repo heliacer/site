@@ -33,9 +33,9 @@ const ogImage = new URL(og.src, Astro.site).href
     <link rel='sitemap' href='/sitemap-index.xml' />
     <link rel='alternate' type='application/rss+xml' href='/rss.xml' />
 
-    <!-- @temporary (!) -->
+    <!-- @temporary, see content.config.ts -->
     {noindex && <meta name='robots' content='noindex' />}
-    
+
     <link rel='icon' href='/favicon.ico' />
     <link rel='apple-touch-icon' href='/apple-touch-icon.png' />
     <Font cssVariable='--font-roboto' preload />
@@ -51,6 +51,7 @@ const ogImage = new URL(og.src, Astro.site).href
     <meta property='og:site_name' content='heliacer.ch' />
     <meta property='og:image' content={ogImage} />
     <meta property='og:image:alt' content={cover.alt} />
+    <meta name='giscus:backlink' content={canonical} />
     <meta name='twitter:card' content='summary_large_image' />
     <script is:inline>
       {
