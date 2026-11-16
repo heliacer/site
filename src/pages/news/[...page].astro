@@ -4,7 +4,7 @@ import { getCollection, render } from 'astro:content'
 import type { GetStaticPaths, InferGetStaticPropsType } from 'astro'
 import Layout from '@/layout.astro'
 import Back from '@/components/Back.astro'
-import { ArrowLeft, ArrowRight } from '@lucide/astro'
+import { ArrowLeft, ArrowRight, Rss } from '@lucide/astro'
 import { proseStyles } from '@/components/shared'
 
 export const getStaticPaths = (async ({ paginate }) => {
@@ -41,6 +41,17 @@ const line = 'Small Updates and Changelogs'
   <main class='max-w-2xl mx-auto 2xl:mx-0'>
     <h1 class='text-4xl my-4 first-letter:text-amber'>News</h1>
     <p class='text-ui-400'>{line}</p>
+    <a
+      href='/rss.xml'
+      class:list={[
+        'flex w-fit gap-2 items-center my-4 text-sm',
+        'underline underline-offset-4 decoration-amber',
+        'hover:decoration-amber/80'
+      ]}
+    >
+      <Rss size={14} />
+      rss.xml
+    </a>
     {posts.map(({ post, Content }) => (
       <article id={post.id} class='py-6 border-t border-dashed border-ui-800'>
         <time

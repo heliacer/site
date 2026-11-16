@@ -3,17 +3,18 @@ import { getCollection } from 'astro:content'
 import type { APIContext } from 'astro'
 
 export async function GET(context: APIContext) {
-  const posts = await getCollection('work', ({ data }) => !data.noindex)
+  const news = await getCollection('news')
 
   return rss({
     title: 'heliacer.ch',
-    description: 'Projects and stuff',
+    description: 'Small Updates and Changelogs',
     site: context.site!,
-    items: posts.map(post => ({
+    trailingSlash: false,
+    items: news.map(post => ({
       title: post.data.title,
-      description: post.data.descr,
+      content: post.rendered?.html,
       pubDate: post.data.pub,
-      link: `/work/${post.id}/`
+      link: `/news/#${post.id}`
     }))
   })
 }

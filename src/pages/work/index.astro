@@ -1,7 +1,7 @@
 ---
 import Layout from '@/layout.astro'
 import Card from '@/components/Card.astro'
-import { ArrowLeftRight, Rss } from '@lucide/astro'
+import { ArrowLeftRight } from '@lucide/astro'
 import { getCollection } from 'astro:content'
 import Back from '@/components/Back.astro'
 
@@ -73,17 +73,6 @@ const line = 'Projects, Articles, and other Stuff'
             </button>
           ))}
         </div>
-        <a
-          href='/rss.xml'
-          class:list={[
-            'hidden md:flex text-sm gap-2 items-center',
-            'underline underline-offset-4 decoration-amber',
-            'hover:decoration-amber/80'
-          ]}
-        >
-          <Rss size={14} />
-          rss.xml
-        </a>
       </aside>
     </nav>
     <ul
